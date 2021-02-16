@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <main></main>
+</body>
+<script>
+
+  // Promise consiste em esperar alguma coisa acontecer
+  // A palavra esperar pode ser 'wait' ... ou await (quando está atrelada a uma Promessa)
+
+  // using Fetch API
+  const apiUrl = 'http://localhost:3333/'
+
+   //console.log(fetch(apiUrl)) // Promessa pendente 
+
+   // Consuming API
+  async function getContent() {
+    try {
+    const response = await fetch(apiUrl)
+    const data = await response.json()
+    // console.log(data)
+    
+    show(data)
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  getContent() // run function
+
+  function show(users) {
+    let output = ''
+    for (let user of users) {
+      output +=`<li>${user.name}</li>`
+    }
+    document.querySelector('main').innerHTML = output;
+  }
+
+</script>
+</html>
